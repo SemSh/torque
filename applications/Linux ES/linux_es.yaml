@@ -34,7 +34,7 @@ configuration:
       chmod +x custom_cloudshell_es_install_script.sh
     script: custom_cloudshell_es_install_script.sh
   start:
-    script: -------------------------------------------------------------
+    script: es_start.sh
   healthcheck:
     wait_for_ports: ALL
     timeout: 180

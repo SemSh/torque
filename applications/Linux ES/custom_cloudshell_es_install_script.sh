@@ -168,10 +168,13 @@ rm -f es.tar
 
 
 # custom section:
+
 yum -y install sshpass
 
 yum -y install ansible
 
-# add testpypi for customer config
-sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config
+# connect to CS host
+mono QsExecutionServerConsoleConfig.exe /s:cs_server_host /u:cs_server_user /p:cs_server_pass /esn:ES_NAME /ansible /a:"{'Execution Server Selector':'Global'}"
 
+# add testpypi to the customer config
+sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config

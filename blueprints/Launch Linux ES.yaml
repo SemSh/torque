@@ -1,0 +1,32 @@
+---
+spec_version: 1
+kind: blueprint
+
+metadata:
+  description: >
+    A app blueprint that launches a CentOS machine and installs a CS Linux ES on it
+clouds:
+  - AWS-Alex-Kogan: eu-west-1
+
+inputs:
+  - CS_HOST: 
+      description: Please enter the CS Host's IP.
+  - CS_USER: admin
+  - CS_PASS:
+      display_style: masked
+      description: please enter the CS user's password
+      default_value: admin
+  - ES_NAME: Linux-ES
+
+applications:
+- linux_es:
+    target: all-in-one
+    input_values:
+      - CS_HOST: $CS_HOST
+      - CS_USER: $CS_USER
+      - CS_PASS: $CS_PASS
+      - ES_NAME: $ES_NAME
+
+debugging:
+  bastion_availability: enabled-on
+  direct_access: on
