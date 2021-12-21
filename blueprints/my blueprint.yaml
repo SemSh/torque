@@ -4,7 +4,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A simple multi-tier application deployed on a single Azure VM.
+    A simple multi-tier application deployed on a single AWS VM.
 clouds:
   - AWS-Alex-Kogan: eu-west-1
 
