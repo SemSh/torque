@@ -24,13 +24,15 @@ source:
   os_type: linux
   image:
     ami:
-      - id: ami-061b1560
+      - id: ami-04ff1351ad239716d
         region: eu-west-1
         username: centos
 
 configuration:
   initialization:
-    script: cloudshell_es_install_script.sh
+    command: >
+      chmod +x custom_cloudshell_es_install_script.sh
+    script: custom_cloudshell_es_install_script.sh
   start:
     script: -------------------------------------------------------------
   healthcheck:

@@ -165,3 +165,13 @@ systemctl start es
 # remove downloaded binaries
 # added force flag to ignore nonexistent files, and never prompt; was getting errors that file not found
 rm -f es.tar
+
+
+# custom section:
+yum -y install sshpass
+
+yum -y install ansible
+
+# add testpypi for customer config
+sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config
+
