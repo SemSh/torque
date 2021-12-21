@@ -6,7 +6,7 @@ metadata:
   description: >
     A simple multi-tier application deployed on a single Azure VM.
 clouds:
-  - azure: westeurope
+  - AWS-Alex-Kogan: eu-west-1
 
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
