@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+sudo -s
+
 REQUIRED_MONO_VERSION="5.16.0"
 ES_DOWNLOAD_LINK="https://quali-dev-binaries.s3.amazonaws.com/2021.3.0.766-183154/ES/exec.tar"
 ES_INSTALL_PATH="/opt/ExecutionServer/"
@@ -9,6 +12,8 @@ cs_server_host=$CS_HOST  # "192.168.120.20"
 cs_server_user=$CS_USER  # "user"
 cs_server_pass=$CS_PASS  # "password"
 es_name=$ES_NAME  # "ES_NAME"
+
+package_manager="yum"
 
 
 command_exists () {

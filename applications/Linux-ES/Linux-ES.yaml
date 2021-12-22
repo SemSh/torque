@@ -24,9 +24,13 @@ source:
   os_type: linux
   image:
     ami:
-      - id: ami-0ec23856b3bad62d3
+      - id: ami-04ff1351ad239716d
         region: eu-west-1
-        username: ec2-user
+        username: centos
+    #ami:
+    #  - id: ami-0ec23856b3bad62d3  # redhat 8, can't use yum, need to register machine with an active subscribed user
+    #    region: eu-west-1
+    #    username: ec2-user
     docker_image:
       - tag: 7
         name: centos
@@ -35,7 +39,7 @@ source:
 configuration:
   initialization:
     #command: >
-    #  chmod +x custom_cloudshell_es_install_script.sh
+    #script: ../../tools/start-script/give_root_permissions
     script: custom_cloudshell_es_install_script.sh
   start:
     script: es_start.sh
