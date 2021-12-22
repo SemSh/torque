@@ -174,7 +174,7 @@ yum -y install sshpass
 yum -y install ansible
 
 # connect to CS host
-mono QsExecutionServerConsoleConfig.exe /s:cs_server_host /u:cs_server_user /p:cs_server_pass /esn:ES_NAME /ansible /a:"{'Execution Server Selector':'Global'}"
+mono $ES_INSTALL_PATH/QsExecutionServerConsoleConfig.exe /s:cs_server_host /u:cs_server_user /p:cs_server_pass /esn:es_name /ansible /a:"{'Execution Server Selector':'Global'}"
 
 # add testpypi to the customer config
 sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config

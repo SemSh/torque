@@ -12,7 +12,7 @@ infrastructure:
   compute:
     spec:
       aws:
-        instance_type: t2.medium
+        instance_type: t2.micro
       azure:
         vm_size: Basic_A2
   connectivity:
@@ -24,7 +24,7 @@ source:
   os_type: linux
   image:
     ami:
-      - id: ami-04ff1351ad239716d
+      - id: ami-0ec23856b3bad62d3
         region: eu-west-1
         username: centos
 
