@@ -26,7 +26,7 @@ applications:
 #    input_values:
 #      - BUILD_NUM: 1.2.3
 - mysql:  # One instance of mysql (see: applications/mysql/mysql.yaml)
-    target: all-in-one
+    target: mysql DB
     input_values:
       - DB_USER: $DB_USER  # Assign values from the app inputs
       - DB_PASS: $DB_PASS

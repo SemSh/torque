@@ -19,13 +19,14 @@ inputs:
   - ES_NAME: Linux-ES
 
 applications:
-- linux_es:
-    target: all-in-one
-    input_values:
-      - CS_HOST: $CS_HOST
-      - CS_USER: $CS_USER
-      - CS_PASS: $CS_PASS
-      - ES_NAME: $ES_NAME
+  - Linux-ES:
+      instances: 1
+      target: ES - $CS_HOST
+      input_values:
+        - CS_HOST: $CS_HOST
+        - CS_USER: $CS_USER
+        - CS_PASS: $CS_PASS
+        - ES_NAME: $ES_NAME
 
 debugging:
   bastion_availability: enabled-on

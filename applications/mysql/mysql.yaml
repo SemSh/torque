@@ -36,8 +36,8 @@ source:
     # AWS region
     ami:
       - id: ami-0ec23856b3bad62d3
-        region: eu-west-1 # original: eu-east-1
-        username: centos
+        region: eu-west-1
+        username: ec2-user
     azure_image:
       - urn: Canonical:UbuntuServer:16.04-LTS:latest
         username: adminuser
