@@ -15,10 +15,10 @@ infrastructure:
         instance_type: t2.micro
       azure:
         vm_size: Basic_A2
-  connectivity:
-    internal:
-      - port_info:
-          port: 3306
+  #connectivity:
+  #  internal:
+  #    - port_info:
+  #        port: 3306
 
 source:
   os_type: linux
@@ -27,11 +27,15 @@ source:
       - id: ami-0ec23856b3bad62d3
         region: eu-west-1
         username: centos
+    docker_image:
+      - tag: 7
+        name: centos
+        username: ec2-user
 
 configuration:
   initialization:
-    command: >
-      chmod +x custom_cloudshell_es_install_script.sh
+    #command: >
+    #  chmod +x custom_cloudshell_es_install_script.sh
     script: custom_cloudshell_es_install_script.sh
   start:
     script: es_start.sh
