@@ -26,11 +26,11 @@ source:
     ami:
       - id: ami-0ec23856b3bad62d3
         region: eu-west-1
-        username: centos
+        username: ec2-user
     docker_image:
       - tag: 7
         name: centos
-        username: ec2-user
+        username: centos
 
 configuration:
   initialization:
