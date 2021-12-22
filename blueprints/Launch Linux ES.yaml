@@ -19,7 +19,7 @@ inputs:
   - ES_NAME: Linux-ES
 
 applications:
-  - linux_es:
+  - Linux-ES:
       instances: 1
       target: ES - $CS_HOST
       input_values:
