@@ -95,6 +95,18 @@ install_python3() {
 	ln -s /usr/bin/python3.7 $PYTHON3_PATH
 }
 
+amazon_linux_install_sshpass() {
+    cd /usr/src
+	wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz/download
+	mv download sshpass-1.05.tar.gz 
+	gunzip sshpass-1.05.tar.gz
+	cd sshpass-1.05
+	tar xvf sshpass-1.05.tar
+	sudo yum -y groupinstall "Development Tools"
+	sudo ./configure
+	sudo make install
+}
+
 
 # Install Python pip
 yum-complete-transaction -y --cleanup-only
@@ -173,10 +185,19 @@ rm -f es.tar
 
 yum -y install sshpass
 
-yum -y install ansible
+if grep -q amzn /proc/version; then  # if this is an amazon linux distribution
+	sudo amazon-linux-extras install -y ansible2
+	amazon_linux_install_sshpass
+else
+    yum -y install ansible
+	yum -y install sshpass
+fi
+
 
 # connect to CS host
-mono $ES_INSTALL_PATH/QsExecutionServerConsoleConfig.exe /s:cs_server_host /u:cs_server_user /p:cs_server_pass /esn:es_name /ansible /a:"{'Execution Server Selector':'Global'}"
+mono $ES_INSTALL_PATH/QsExecutionServerConsoleConfig.exe /s:$cs_server_host /u:$cs_server_user /p:$cs_server_pass /esn:$es_name /ansible /a:"{'Execution Server Selector':'Global'}"
+
+# mono QsExecutionServerConsoleConfig.exe /s:192.168.30.85 /u:admin /p:admin /esn:tsssts /ansible /a:"{'Execution Server Selector':'Global'}"
 
 # add testpypi to the customer config
 sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config
