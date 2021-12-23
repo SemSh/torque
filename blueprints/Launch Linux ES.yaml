@@ -4,7 +4,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A app blueprint that launches a CentOS machine and installs a CS Linux ES on it
+    An app blueprint that launches a CentOS machine and installs a CS Linux ES on it
 clouds:
   - AWS-Alex-Kogan: eu-west-1
 
