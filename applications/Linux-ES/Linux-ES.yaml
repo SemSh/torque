@@ -44,6 +44,7 @@ configuration:
   initialization:
     #command: >
     #script: ../../tools/start-script/give_root_permissions
+    # These scripts run with root access by default
     script: custom_cloudshell_es_install_script.sh 
   start:
     script: es_start.sh

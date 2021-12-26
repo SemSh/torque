@@ -96,15 +96,9 @@ install_python3() {
 }
 
 amazon_linux_install_sshpass() {
-    cd /usr/src
-	wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz/download
-	mv download sshpass-1.05.tar.gz 
-	gunzip sshpass-1.05.tar.gz
-	cd sshpass-1.05
-	tar xvf sshpass-1.05.tar
-	sudo yum -y groupinstall "Development Tools"
-	sudo ./configure
-	sudo make install
+	sudo amazon-linux-extras install epel -y
+	sudo yum-config-manager --enable epel
+	yum -y install sshpass
 }
 
 
@@ -173,17 +167,12 @@ python3 -m pip install virtualenv==16.2.0 -U
 # configure the execution server as a service
 configure_systemctl_service
 
-echo "Starting execution server service"
-systemctl start es
-
 # remove downloaded binaries
 # added force flag to ignore nonexistent files, and never prompt; was getting errors that file not found
 rm -f es.tar
 
 
 # custom section:
-
-yum -y install sshpass
 
 if grep -q amzn /proc/version; then  # if this is an amazon linux distribution
 	sudo amazon-linux-extras install -y ansible2
@@ -193,11 +182,13 @@ else
 	yum -y install sshpass
 fi
 
+echo "Starting execution server service"
+systemctl start es
 
 # connect to CS host
 mono $ES_INSTALL_PATH/QsExecutionServerConsoleConfig.exe /s:$cs_server_host /u:$cs_server_user /p:$cs_server_pass /esn:$es_name /ansible /a:"{'Execution Server Selector':'Global'}"
 
-# mono QsExecutionServerConsoleConfig.exe /s:192.168.30.85 /u:admin /p:admin /esn:tsssts /ansible /a:"{'Execution Server Selector':'Global'}"
+#mono QsExecutionServerConsoleConfig.exe /s:192.168.30.85 /u:admin /p:admin /esn:tsssts /ansible /a:"{'Execution Server Selector':'Global'}"
 
 # add testpypi to the customer config
 sed '/</appSettings>/i <add key="RequirementsExtraRepository" value="https://testpypi.python.org/simple/"/>' $ES_INSTALL_PATH/customer.config
